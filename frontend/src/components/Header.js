@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import NavDropdown from 'react-bootstrap/NavDropdown';
 function Header(){
     return(
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
@@ -16,6 +17,20 @@ function Header(){
                     <li className="nav-item">
                         <Link className="nav-link" to="categories">Categories</Link>
                     </li>
+
+                    <NavDropdown title="My Account" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1"><Link to="/customer/register">Register</Link></NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2"><Link to="/customer/login">Login</Link></NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4"><Link to="/customer/dashboard">Dashboard</Link></NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.5">Logout</NavDropdown.Item>
+                    </NavDropdown>
+
+                    <li className="nav-item">
+                        <Link className="nav-link" to="checkout">My cart(4)</Link>
+                    </li>
+
+
 
                 </ul>
             </div>
