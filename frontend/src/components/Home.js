@@ -2,19 +2,20 @@ import {Link} from "react-router-dom";
 import SingleProduct from "./SingleProduct";
 import logo from "../logo.svg";
 import Carousel from "react-bootstrap/Carousel";
+import AllProducts from "./AllProducts";
 function Home(){
     return(
         <main className='mt-4'>
             <div className='container'>
                 {/* latest Products*/}
-                <h3 className='mb-4'>New Products <a href="#" className='float-end btn btn-sm btn-success'>View All Products <i
-                    className="fa-solid fa-arrow-right-long"></i></a> </h3>
+                <h3 className='mb-4'>New Products <Link to="/products" className='float-end btn btn-sm btn-success'>View All Products <i
+                    className="fa-solid fa-arrow-right-long"></i></Link> </h3>
                 <div className='row'>
                     {/* Product Box */}
-                    <SingleProduct/>
-                    <SingleProduct/>
-                    <SingleProduct/>
-                    <SingleProduct/>
+                    <SingleProduct title="Django Project1"/>
+                    <SingleProduct title="Django Project1"/>
+                    <SingleProduct title="Django Project1"/>
+                    <SingleProduct title="Django Project1"/>
                     <SingleProduct/>
                     <SingleProduct/>
                     <SingleProduct/>
