@@ -1,19 +1,13 @@
 import logo from "../../logo.svg";
 import {Link} from "react-router-dom";
+import Sidebar from "./Sidebar";
 
 function Dashboard(props){
     return(
         <div className='container mt-4'>
             <div className='row'>
                <div className="col-md-3 col-12 mb-2">
-               <div className="list-group">
-                   <a href="#" className="list-group-item list-group-item-action active">Dashboard</a>
-                   <a href="#" className="list-group-item list-group-item-action">Orders</a>
-                   <a href="#" className="list-group-item list-group-item-action">Wishlist</a>
-                   <a className="list-group-item list-group-item-action">Profile</a>
-                   <a className="list-group-item list-group-item-action">Address</a>
-                   <a className="list-group-item list-group-item-action text-danger ">Logout</a>
-               </div>
+                    <Sidebar />
                </div>
                 <div className="col-md-9 col-12 mb-2">
                     <div className='row'>

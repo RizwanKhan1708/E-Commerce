@@ -1,19 +1,24 @@
-import logo from "../logo.svg";
+import logo from "../../logo.svg";
 import {Link} from "react-router-dom";
+import Sidebar from "./Sidebar";
 
-function Checkout(props){
+function Orders(props){
     return(
-        <div className='container mb-4'>
-            <h3 className='mb-4'>All Items(4)</h3>
+        <div className='container mt-4'>
             <div className='row'>
-                <div className='col-md-8 col-12'>
-                    <div className='table-responsive'>
-                        <table className='table table-bordered'>
-                            <thead>
+               <div className="col-md-3 col-12 mb-2">
+                    <Sidebar />
+               </div>
+                <div className="col-md-9 col-12 mb-2">
+                    <div className='row'>
+                        <div className='table-responsive'>
+                            <table className='table table-bordered'>
+                                <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Product</th>
                                 <th>Price</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -24,6 +29,7 @@ function Checkout(props){
                                     <Link><p>Django</p></Link>
                                 </td>
                                 <td>Rs: 500</td>
+                                <td><button className='btn btn-danger btn-sm'>Remove</button></td>
                             </tr>
                             <tr>
                                 <td>2</td>
@@ -32,6 +38,7 @@ function Checkout(props){
                                     <Link><p>Python</p></Link>
                                 </td>
                                 <td>Rs: 500</td>
+                                <td><button className='btn btn-danger btn-sm'>Remove</button></td>
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -40,6 +47,8 @@ function Checkout(props){
                                     <Link><p>Flask</p></Link>
                                 </td>
                                 <td>Rs: 500</td>
+                                <td><button className='btn btn-danger btn-sm'>Remove</button></td>
+
                             </tr>
                             <tr>
                                 <td>4</td>
@@ -48,27 +57,13 @@ function Checkout(props){
                                     <Link><p>Flutter</p></Link>
                                 </td>
                                 <td>Rs: 500</td>
+                                <td><button className='btn btn-danger btn-sm'>Remove</button></td>
                             </tr>
                             </tbody>
 
-                            <tfoot>
-                                <tr>
-                                    <th></th>
-                                    <th>Total</th>
-                                    <th>Rs: 2000</th>
-                                </tr>
-
-                                <tr>
-                                    <td colSpan='3' align='right'>
-                                        <Link to="/categories" className="btn btn-secondary">Continue Shopping</Link>
-                                        <Link to="/order/success" className="btn btn-success ms-1">Proceed to Payment</Link>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-
+                            </table>
+                        </div>
                     </div>
-
                 </div>
             </div>
 
@@ -76,4 +71,4 @@ function Checkout(props){
 
     )
 }
-export default Checkout;
+export default Orders;
