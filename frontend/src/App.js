@@ -30,7 +30,19 @@ import PrfileUpdate from "./components/Customer/ProfileUpdate";
 import ChangePassword from "./components/Customer/ChangePassword";
 import AddressList from "./components/Customer/AddressList";
 import AddAddress from "./components/Customer/AddAddress";
+import SellerChangePassword from "./components/Seller/SellerChangePassword";
+import SellerProfileUpdate from "./components/Seller/SellerProfileUpdate";
 
+
+//Seller penal
+import SellerRegister from "./components/Seller/SellerRegister";
+import SellerLogin from "./components/Seller/Sellerlogin";
+import SellerDashboard from "./components/Seller/SellerDashboard";
+import SellerProducts from "./components/Seller/SellerProducts";
+import SellerAddProducts from "./components/Seller/SellerAddProducts";
+import SellerOrders from "./components/Seller/SellerOrders";
+import Customers from "./components/Seller/Customers";
+import Reports from "./components/Seller/Reports";
 
 function App() {
   return (
@@ -54,6 +66,19 @@ function App() {
       <Route path='/categories' element={<Categories/>} />
       <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
       <Route path='/product/:product_slug/:product_id' element={<ProductDetail/>}/>
+    {/*  seller penal*/}
+      <Route path='/seller/register' element={<SellerRegister/>} />
+      <Route path='/seller/login' element={<SellerLogin/>} />
+      <Route path='/seller/dashboard' element={<SellerDashboard/>}/>
+      <Route path='/seller/products' element={<SellerProducts/>}/>
+      <Route path='/seller/add-product' element={<SellerAddProducts/>}/>
+      <Route path='/seller/orders' element={<SellerOrders/>}/>
+      <Route path='/seller/customer' element={<Customers/>}/>
+      <Route path='/seller/reports' element={<Reports/>}/>
+      <Route path='/seller/change-password' element={<SellerChangePassword/>}/>
+      <Route path='/seller/update-profile' element={<SellerProfileUpdate/>}/>
+
+
     </Routes>
     <Footer/>
 
