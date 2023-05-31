@@ -26,6 +26,18 @@ function Header(){
                         <NavDropdown.Item href="#action/3.5">Logout</NavDropdown.Item>
                     </NavDropdown>
 
+                    <NavDropdown title="vendor Penal" id="basic-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1"><Link to="/seller/register">Register</Link></NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.2"><Link to="/seller/login">Login</Link></NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href="#action/3.4"><Link to="/seller/dashboard">Dashboard</Link></NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.5">Logout</NavDropdown.Item>
+                    </NavDropdown>
+
+                    <li className="nav-item">
+                        <Link className="nav-link" to="checkout">New Orders(3)</Link>
+                    </li>
+
                     <li className="nav-item">
                         <Link className="nav-link" to="checkout">My cart(4)</Link>
                     </li>
