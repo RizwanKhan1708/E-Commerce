@@ -4,6 +4,24 @@ import logo from "../logo.svg";
 import Carousel from "react-bootstrap/Carousel";
 import AllProducts from "./AllProducts";
 function Home(){
+    const products=[
+        {
+            'title':'product',
+            'price':'100'
+        },
+        {
+            'title':'product',
+            'price':'200'
+        },
+        {
+            'title':'product',
+            'price':'300'
+        },
+        {
+            'title':'product',
+            'price':'400'
+        }
+    ]
     return(
         <main className='mt-4'>
             <div className='container'>
@@ -12,14 +30,9 @@ function Home(){
                     className="fa-solid fa-arrow-right-long"></i></Link> </h3>
                 <div className='row'>
                     {/* Product Box */}
-                    <SingleProduct title="Django Project1"/>
-                    <SingleProduct title="Django Project1"/>
-                    <SingleProduct title="Django Project1"/>
-                    <SingleProduct title="Django Project1"/>
-                    <SingleProduct/>
-                    <SingleProduct/>
-                    <SingleProduct/>
-                    <SingleProduct/>
+                    {
+                    products.map((product)=><SingleProduct product={product}/>)
+                    }
 
                 </div>
                 {/*end Latest products */}
