@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'main',
-    "corsheaders",
+    'corsheaders',
 
 ]
 
@@ -152,7 +152,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES' : [
     #     'rest_framework.permissions.IsAuthenticated',
-        # 'rest_framework.authentication.SessionAuthentication',
+    #     # 'rest_framework.authentication.SessionAuthentication',
     # ],
     # 'DEFAULT_AUTHENTICATION_CLASSES':[
     #     'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -161,6 +161,7 @@ REST_FRAMEWORK = {
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 1
 }
-CORS_ALLOWED_ORIGINS=[
+
+CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000"
 ]

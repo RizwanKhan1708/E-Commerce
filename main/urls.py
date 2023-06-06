@@ -12,10 +12,10 @@ urlpatterns = [
 
 #  Categories
     path('categories',views.CatagoriesList.as_view()),
-    path('catagory/<int:pk>/', views.CatagoryDetail.as_view()),
+    path('category/<int:pk>/', views.CatagoryDetail.as_view()),
 
 #  Products
-    path('products',views.ProductList.as_view()),
+    path('products/',views.ProductList.as_view()),
     path('product/<int:pk>/', views.ProductDetail.as_view()),
 
 #  Customer

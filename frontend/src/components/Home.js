@@ -6,20 +6,23 @@ import AllProducts from "./AllProducts";
 function Home(){
     const products=[
         {
-            'title':'product',
-            'price':'100'
+            'title':'product1',
+            'price':'123'
         },
+
         {
-            'title':'product',
-            'price':'200'
+            'title':'product2',
+            'price':'321'
         },
+
         {
-            'title':'product',
-            'price':'300'
+            'title':'product3',
+            'price':'432'
         },
+
         {
-            'title':'product',
-            'price':'400'
+            'title':'product4',
+            'price':'231'
         }
     ]
     return(
@@ -31,7 +34,7 @@ function Home(){
                 <div className='row'>
                     {/* Product Box */}
                     {
-                    products.map((product)=><SingleProduct product={product}/>)
+                        products.map((product) => <SingleProduct product={product}/>)
                     }
 
                 </div>
