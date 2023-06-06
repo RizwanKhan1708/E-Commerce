@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from . import serializers
-from rest_framework import generics,permissions,viewsets
+from rest_framework import generics,permissions,viewsets,pagination
 from . import models
 
 class VendorList(generics.ListCreateAPIView):
@@ -17,7 +17,15 @@ class VendorDetail(generics.RetrieveUpdateDestroyAPIView):
 class ProductList(generics.ListCreateAPIView):
     queryset = models.Products.objects.all()
     serializer_class = serializers.ProductListSerializer
-    # permission_classes = [permissions.IsAuthenticated]
+    pagination_class = pagination.PageNumberPagination
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        category=self.request.GET['category']
+        category=models.ProductCategory.objects.get(id=category)
+        qs =qs.filter(category=category)
+        return qs
+
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Products.objects.all()

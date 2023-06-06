@@ -117,7 +117,7 @@ class CatagoriesDetailSerializer(serializers.ModelSerializer):
     product_rating=serializers.StringRelatedField(many=True,read_only=True)
     class Meta:
         model = models.ProductCategory
-        fields = ['id','title', 'detail']
+        fields = ['id','title', 'detail','product_rating']
         # depth = 1
     def __init__(self, *args, **kwargs):
         super(CatagoriesDetailSerializer, self).__init__(*args, **kwargs)
