@@ -19,12 +19,12 @@ class ProductList(generics.ListCreateAPIView):
     serializer_class = serializers.ProductListSerializer
     pagination_class = pagination.PageNumberPagination
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        category=self.request.GET['category']
-        category=models.ProductCategory.objects.get(id=category)
-        qs =qs.filter(category=category)
-        return qs
+    # def get_queryset(self):
+    #     qs = super().get_queryset()
+    #     category=self.request.GET['category']
+    #     category=models.ProductCategory.objects.get(id=category)
+    #     qs =qs.filter(category=category)
+    #     return qs
 
 
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
