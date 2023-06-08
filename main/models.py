@@ -22,11 +22,18 @@ class Products(models.Model):
     category = models.ForeignKey(ProductCategory,on_delete=models.SET_NULL,null=True,related_name='category_product')
     vendor = models.ForeignKey(vendor,on_delete=models.SET_NULL,null=True)
     title = models.CharField(max_length=200)
+    slug = models.CharField(max_length=300,unique=True,null=True)
     detail = models.TextField(null=True)
     price = models.FloatField(default=0.00)
+    tags = models.TextField(null=True)
+    image = models.ImageField(upload_to='product_imgs/',null=True)
 
     def __str__(self):
         return self.title
+
+    def tag_list(self):
+        taglist = self.tags.split(',')
+        return taglist
 
 
 # customer Model
