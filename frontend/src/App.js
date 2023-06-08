@@ -14,6 +14,7 @@ import Home from "./components/Home"
 import Categories from "./components/Categories";
 import Footer from "./components/Footer";
 import CategoryProducts from "./components/CategoryProducts";
+// import TagProducts from "./components/TagProducts";
 import AllProducts from "./components/AllProducts";
 import Checkout from "./components/Checkout";
 import ProductDetail from "./components/ProductDetail";
@@ -43,6 +44,7 @@ import SellerAddProducts from "./components/Seller/SellerAddProducts";
 import SellerOrders from "./components/Seller/SellerOrders";
 import Customers from "./components/Seller/Customers";
 import Reports from "./components/Seller/Reports";
+import TagProducts from "./components/TagProducts";
 
 function App() {
   return (
@@ -65,6 +67,7 @@ function App() {
       <Route path='/order/failure' element={<OrderFailure/>} />
       <Route path='/categories' element={<Categories/>} />
       <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
+      <Route path='/products/:tag/' element={<TagProducts/>}/>
       <Route path='/product/:product_slug/:product_id' element={<ProductDetail/>}/>
     {/*  seller penal*/}
       <Route path='/seller/register' element={<SellerRegister/>} />
