@@ -18,6 +18,7 @@ urlpatterns = [
     path('products/',views.ProductList.as_view()),
     path('products/<str:tag>',views.TagProductList.as_view()),
     path('product/<int:pk>/', views.ProductDetail.as_view()),
+    path('related_products/<int:pk>/',views.RelatedProductList.as_view()),
 
 #  Customer
     path('customers/',views.CustomerList.as_view()),

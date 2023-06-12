@@ -17,7 +17,7 @@ class VendorDetail(generics.RetrieveUpdateDestroyAPIView):
 class ProductList(generics.ListCreateAPIView):
     queryset = models.Products.objects.all()
     serializer_class = serializers.ProductListSerializer
-    # pagination_class = pagination.PageNumberPagination
+    pagination_class = pagination.PageNumberPagination
 
     # def get_queryset(self):
     #     qs = super().get_queryset()
@@ -25,6 +25,18 @@ class ProductList(generics.ListCreateAPIView):
     #     category=models.ProductCategory.objects.get(id=category)
     #     qs =qs.filter(category=category)
     #     return qs
+
+class RelatedProductList(generics.ListCreateAPIView):
+    queryset = models.Products.objects.all()
+    serializer_class = serializers.ProductListSerializer
+    # pagination_class = pagination.PageNumberPagination
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        product_id=self.kwargs['pk']
+        product = models.Products.objects.get(id=product_id)
+        qs =qs.filter(category=product.category).exclude(id=product_id)
+        return qs
 
 
 class TagProductList(generics.ListCreateAPIView):
