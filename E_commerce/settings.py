@@ -159,7 +159,7 @@ REST_FRAMEWORK = {
     # ],
     'DEFAULT_PAGINATION_CLASS': 'main.pagination.CustomPagination',
     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 1
+    'PAGE_SIZE': 12
 }
 
 MEDIA_URL='/media/'
