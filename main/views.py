@@ -2,6 +2,10 @@ from django.shortcuts import render
 from . import serializers
 from rest_framework import generics,permissions,viewsets,pagination
 from . import models
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate
 
 class VendorList(generics.ListCreateAPIView):
     queryset = models.vendor.objects.all()
@@ -68,6 +72,30 @@ class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.CustomerDetailSerializer
     # permission_classes = [permissions.IsAuthenticated]
 
+@csrf_exempt
+def customer_login(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        username = body.get('username')
+        password = body.get('password')
+        user = authenticate(username=username, password=password)
+        print({"username": username, "password": password})
+        if user:
+            msg = {
+                'bool': True,
+                'user': user.username
+            }
+        else:
+            msg = {
+                'bool': False,
+                'msg': "username not found"
+            }
+        return JsonResponse(msg)
+    else:
+        # Handle other HTTP methods if needed
+        return JsonResponse({'error': 'Invalid request method'})
+
 # order
 
 class OrderList(generics.ListCreateAPIView):
@@ -111,3 +139,5 @@ class CatagoryDetail(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = models.OrderItems.objects.all()
 #     serializer_class = serializers.OrderItemDetailSerializer
     # permission_classes = [permissions.IsAuthenticated]
+
+

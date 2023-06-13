@@ -12,7 +12,7 @@ function ProductDetail(){
     const [ProductData,setProductData]=useState([]);
     const [product_imgs,setProductImags]=useState([]);
     const [productTags,setproductTags]=useState([]);
-  const [relatedProducts, setRelatedProducts] = useState([]); // Corrected state declaration
+    const [relatedProducts, setRelatedProducts] = useState([]);
     const {product_slug,product_id} = useParams();
 
 
