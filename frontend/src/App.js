@@ -24,6 +24,7 @@ import OrderFailure from "./components/OrderFailure";
 // Customer penal
 import Register from "./components/Customer/Register";
 import Login from "./components/Customer/login";
+import CustomerLogout from "./components/Customer/logout";
 import Dashboard from "./components/Customer/Dashboard";
 import Orders from "./components/Customer/Orders";
 import Wishlist from "./components/Customer/Wishlist";
@@ -58,6 +59,7 @@ function App() {
       <Route path='/customer/orders' element={<Orders/>} />
       <Route path='/customer/wishlist' element={<Wishlist/>} />
       <Route path='/customer/login' element={<Login/>} />
+      <Route path='/customer/logout' element={<CustomerLogout/>} />
       <Route path='/customer/updateprofile' element={<PrfileUpdate/>} />
       <Route path='/customer/changepassword' element={<ChangePassword/>} />
       <Route path='/customer/addresses' element={<AddressList/>} />

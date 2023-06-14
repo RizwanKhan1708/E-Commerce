@@ -6,6 +6,7 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 
 class VendorList(generics.ListCreateAPIView):
     queryset = models.vendor.objects.all()
@@ -80,7 +81,6 @@ def customer_login(request):
         username = body.get('username')
         password = body.get('password')
         user = authenticate(username=username, password=password)
-        print({"username": username, "password": password})
         if user:
             msg = {
                 'bool': True,
@@ -89,7 +89,40 @@ def customer_login(request):
         else:
             msg = {
                 'bool': False,
-                'msg': "username not found"
+                'msg': "Invalid Username/Password"
+            }
+        return JsonResponse(msg)
+    else:
+        # Handle other HTTP methods if needed
+        return JsonResponse({'error': 'Invalid request method'})
+
+
+@csrf_exempt
+def customer_register(request):
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        first_name = body.get('first_name')
+        last_name = body.get('last_name')
+        username = body.get('username')
+        email = body.get('email')
+        mobile = body.get('mobilenumber')
+        password = body.get('password')
+        print({"firstname":first_name,"last_name":last_name,"username":username,"email":email,"mobile":mobile,"password":password,})
+        user = User.objects.create(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
+        if user:
+            # create customer
+            customer = models.Customer.objects.create(user=user,mobile=mobile)
+            msg = {
+                'bool': True,
+                'user': user.id,
+                'customer': customer.id,
+                'msg':'Thank you for your registration please login Now'
+            }
+        else:
+            msg = {
+                'bool': False,
+                'msg': "Ooops...... Something went wrong!!"
             }
         return JsonResponse(msg)
     else:
