@@ -23,7 +23,7 @@ function Header(){
                         <NavDropdown.Item href="#action/3.2"><Link to="/customer/login">Login</Link></NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item href="#action/3.4"><Link to="/customer/dashboard">Dashboard</Link></NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.5">Logout</NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.5"><Link to="/customer/logout">Logout</Link></NavDropdown.Item>
                     </NavDropdown>
 
                     <NavDropdown title="vendor Penal" id="basic-nav-dropdown">
