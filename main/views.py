@@ -4,6 +4,7 @@ from rest_framework import generics,permissions,viewsets,pagination
 from . import models
 import json
 from django.http import JsonResponse
+from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
@@ -109,25 +110,35 @@ def customer_register(request):
         mobile = body.get('mobilenumber')
         password = body.get('password')
         print({"firstname":first_name,"last_name":last_name,"username":username,"email":email,"mobile":mobile,"password":password,})
-        user = User.objects.create(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
-        if user:
-            # create customer
-            customer = models.Customer.objects.create(user=user,mobile=mobile)
-            msg = {
-                'bool': True,
-                'user': user.id,
-                'customer': customer.id,
-                'msg':'Thank you for your registration please login Now'
-            }
-        else:
+        try:
+            user = User.objects.create(first_name=first_name,last_name=last_name,username=username,email=email,password=password)
+            if user:
+                try:
+                    # create customer
+                    customer = models.Customer.objects.create(user=user,mobile=mobile)
+                    msg = {
+                        'bool': True,
+                        'user': user.id,
+                        'customer': customer.id,
+                        'msg':'Thank you for your registration please login Now'
+                    }
+                except IntegrityError:
+                    msg = {
+                        'bool': False,
+                        'msg': "Mobile already exist"
+                    }
+            else:
+                msg = {
+                    'bool': False,
+                    'msg': "Ooops...... Something went wrong!!"
+                }
+        except IntegrityError:
             msg = {
                 'bool': False,
-                'msg': "Ooops...... Something went wrong!!"
+                'msg': "username already exist"
             }
         return JsonResponse(msg)
-    else:
-        # Handle other HTTP methods if needed
-        return JsonResponse({'error': 'Invalid request method'})
+
 
 # order
 
