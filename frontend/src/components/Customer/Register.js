@@ -33,8 +33,9 @@ function Register(props){
             })
             .then(function (response) {
                 if(response.data.bool==false){
-                    setFormError(true)
+                    // setFormError(true)
                     seterrorMsg(response.data.msg)
+                    setSuccessMsg('')
                 }else{
                     setRegisterFormData({
                         first_name: "",
@@ -44,7 +45,7 @@ function Register(props){
                         mobilenumber: "",
                         password: "",
                     })
-                    setFormError(false)
+                    seterrorMsg('')
                     setSuccessMsg(response.data.msg)
                 }
 
@@ -66,6 +67,7 @@ function Register(props){
                         <div className='card-body'>
                             <p className='text-muted'>All fields are required</p>
                             {successMsg && <p className='text-success'>{successMsg}</p>}
+                            {errorMsg && <p className='text-danger'>{errorMsg}</p>}
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="firstname" className="form-label">First Name</label>
