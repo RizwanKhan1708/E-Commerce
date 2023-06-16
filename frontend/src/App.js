@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import {Routes,Route} from 'react-router-dom'
+import { CartContext} from "./Context";
+import {useState} from 'react'
 
 // Assets
 import 'bootstrap/dist/css/bootstrap.css';
@@ -35,7 +37,6 @@ import AddAddress from "./components/Customer/AddAddress";
 import SellerChangePassword from "./components/Seller/SellerChangePassword";
 import SellerProfileUpdate from "./components/Seller/SellerProfileUpdate";
 
-
 //Seller penal
 import SellerRegister from "./components/Seller/SellerRegister";
 import SellerLogin from "./components/Seller/Sellerlogin";
@@ -47,47 +48,50 @@ import Customers from "./components/Seller/Customers";
 import Reports from "./components/Seller/Reports";
 import TagProducts from "./components/TagProducts";
 
+const checkCart=localStorage.getItem('cartData')
 function App() {
+  const [cartData,setCartData]=useState(JSON.parse(checkCart));
   return (
-    <>
-    <Header/>
-    <Routes>
-      <Route path='/' element={<Home/>} />
-      <Route path='/products' element={<AllProducts/>} />
-      <Route path='/customer/register' element={<Register/>} />
-      <Route path='/customer/dashboard' element={<Dashboard/>} />
-      <Route path='/customer/orders' element={<Orders/>} />
-      <Route path='/customer/wishlist' element={<Wishlist/>} />
-      <Route path='/customer/login' element={<Login/>} />
-      <Route path='/customer/logout' element={<CustomerLogout/>} />
-      <Route path='/customer/updateprofile' element={<PrfileUpdate/>} />
-      <Route path='/customer/changepassword' element={<ChangePassword/>} />
-      <Route path='/customer/addresses' element={<AddressList/>} />
-      <Route path='/customer/add_address' element={<AddAddress/>} />
-      <Route path='/checkout' element={<Checkout/>} />
-      <Route path='/order/success' element={<OrderSuccess/>} />
-      <Route path='/order/failure' element={<OrderFailure/>} />
-      <Route path='/categories' element={<Categories/>} />
-      <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
-      <Route path='/products/:tag/' element={<TagProducts/>}/>
-      <Route path='/product/:product_slug/:product_id' element={<ProductDetail/>}/>
-    {/*  seller penal*/}
-      <Route path='/seller/register' element={<SellerRegister/>} />
-      <Route path='/seller/login' element={<SellerLogin/>} />
-      <Route path='/seller/dashboard' element={<SellerDashboard/>}/>
-      <Route path='/seller/products' element={<SellerProducts/>}/>
-      <Route path='/seller/add-product' element={<SellerAddProducts/>}/>
-      <Route path='/seller/orders' element={<SellerOrders/>}/>
-      <Route path='/seller/customer' element={<Customers/>}/>
-      <Route path='/seller/reports' element={<Reports/>}/>
-      <Route path='/seller/change-password' element={<SellerChangePassword/>}/>
-      <Route path='/seller/update-profile' element={<SellerProfileUpdate/>}/>
+      <CartContext.Provider value={{cartData,setCartData}}>
+        <>
+        <Header/>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/products' element={<AllProducts/>} />
+          <Route path='/customer/register' element={<Register/>} />
+          <Route path='/customer/dashboard' element={<Dashboard/>} />
+          <Route path='/customer/orders' element={<Orders/>} />
+          <Route path='/customer/wishlist' element={<Wishlist/>} />
+          <Route path='/customer/login' element={<Login/>} />
+          <Route path='/customer/logout' element={<CustomerLogout/>} />
+          <Route path='/customer/updateprofile' element={<PrfileUpdate/>} />
+          <Route path='/customer/changepassword' element={<ChangePassword/>} />
+          <Route path='/customer/addresses' element={<AddressList/>} />
+          <Route path='/customer/add_address' element={<AddAddress/>} />
+          <Route path='/checkout' element={<Checkout/>} />
+          <Route path='/order/success' element={<OrderSuccess/>} />
+          <Route path='/order/failure' element={<OrderFailure/>} />
+          <Route path='/categories' element={<Categories/>} />
+          <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
+          <Route path='/products/:tag/' element={<TagProducts/>}/>
+          <Route path='/product/:product_slug/:product_id' element={<ProductDetail/>}/>
+          {/*  seller penal*/}
+          <Route path='/seller/register' element={<SellerRegister/>} />
+          <Route path='/seller/login' element={<SellerLogin/>} />
+          <Route path='/seller/dashboard' element={<SellerDashboard/>}/>
+          <Route path='/seller/products' element={<SellerProducts/>}/>
+          <Route path='/seller/add-product' element={<SellerAddProducts/>}/>
+          <Route path='/seller/orders' element={<SellerOrders/>}/>
+          <Route path='/seller/customer' element={<Customers/>}/>
+          <Route path='/seller/reports' element={<Reports/>}/>
+          <Route path='/seller/change-password' element={<SellerChangePassword/>}/>
+          <Route path='/seller/update-profile' element={<SellerProfileUpdate/>}/>
 
 
-    </Routes>
-    <Footer/>
-
-  </>
+        </Routes>
+        <Footer/>
+        </>
+      </CartContext.Provider>
   );
 }
 
