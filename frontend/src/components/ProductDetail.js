@@ -4,12 +4,15 @@ import {useParams} from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import SingleProduct from "./SingleProduct";
 import RelatedSingleProduct from "./RelatedSingleProduct";
-import {useState,useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
+import {UserContext,CartContext} from "../Context";
 
 
 function ProductDetail(){
     const baseUrl="http://127.0.0.1:8000/api";
     const [ProductData,setProductData]=useState([]);
+    const [cartButtonClickStatus,setCartButtonClickStatus]=useState(false);
+    const {cartData,setCartData}=useContext(CartContext);
     const [product_imgs,setProductImags]=useState([]);
     const [productTags,setproductTags]=useState([]);
     const [relatedProducts, setRelatedProducts] = useState([]);
@@ -48,6 +51,50 @@ function ProductDetail(){
     }
 
 
+    const cartAddButtonHandler = () =>{
+        var previousCart=localStorage.getItem('cartData')
+        var cartJson=JSON.parse(previousCart)
+        var cartData={
+                'product': {
+                    'id': ProductData.id,
+                    'title':ProductData.title
+                },
+                user:{
+                    'id':1
+                }
+            }
+        if(cartJson!=null){
+            cartJson.push(cartData)
+            var cartString=JSON.stringify(cartJson)
+            localStorage.setItem('cartData',cartString)
+            setCartData(cartJson)
+        }else {
+            var newCartList=[];
+            newCartList.push(cartData)
+            var cartstring=JSON.stringify(newCartList)
+            localStorage.setItem('cartData',cartstring)
+        }
+
+        setCartButtonClickStatus(true)
+
+    }
+
+    const cartRemoveButtonHandler = () =>{
+        var previousCart=localStorage.getItem('cartData');
+        var cartJson=JSON.parse(previousCart);
+        cartJson.map((cart,index)=>{
+            if(cart!=null && cart.product.id == ProductData.id){
+                // delete cartJson[index];
+                cartJson.splice(index,1)
+            }
+        });
+        var cartString=JSON.stringify(cartJson);
+        localStorage.setItem('cartData', cartString)
+        setCartButtonClickStatus(false)
+        setCartData(cartJson)
+    }
+
+
     return(
         <section className="container mt-4">
             <div className="row">
@@ -65,9 +112,14 @@ function ProductDetail(){
                     <br></br>
                     <h5 className="card-title">Price Rs. <span className="text-danger">{ProductData.price}</span></h5>
                     <p>{ProductData.detail}</p>
-                    <button title="Add to cart" className='btn btn-primary '><i className="fa-solid fa-cart-plus"></i> Add to Cart
-                    </button>
-
+                    {!cartButtonClickStatus &&
+                        <button title="Add to cart" type="button" onClick={cartAddButtonHandler} className='btn btn-primary '><i className="fa-solid fa-cart-plus"></i> Add to Cart
+                        </button>
+                    }
+                    {cartButtonClickStatus &&
+                        <button title="Remove from cart" type="button" onClick={cartRemoveButtonHandler} className='btn btn-warning '><i className="fa-solid fa-cart-plus"></i> Remove from cart
+                        </button>
+                    }
                     <button title="Buy Now" className='btn btn-success  ms-1'><i
                         className="fa-solid fa-bag-shopping"></i> Buy Now
                     </button>

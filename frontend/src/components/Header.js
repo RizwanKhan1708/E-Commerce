@@ -1,10 +1,10 @@
 import {Link} from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import {UserContext} from "../Context";
+import {UserContext,CartContext} from "../Context";
 import {useContext} from "react";
-function Header(){
+function Header(props){
     const userContext=useContext(UserContext)
-    console.log(userContext)
+    const {cartData,setcartData}=useContext(CartContext)
     return(
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
         <div className="container">
@@ -53,7 +53,7 @@ function Header(){
                     </li>
 
                     <li className="nav-item">
-                        <Link className="nav-link" to="checkout">My cart(4)</Link>
+                        <Link className="nav-link" to="checkout">My cart ({cartData.length})</Link>
                     </li>
 
 
