@@ -5,6 +5,11 @@ import {useContext} from "react";
 function Header(props){
     const userContext=useContext(UserContext)
     const {cartData,setcartData}=useContext(CartContext)
+    if (cartData == null){
+        var cartitems=0
+    }else {
+        var cartitems=cartData.length
+    }
     return(
     <nav className="navbar navbar-expand-lg navbar-dark bg-success">
         <div className="container">
@@ -53,10 +58,8 @@ function Header(props){
                     </li>
 
                     <li className="nav-item">
-                        <Link className="nav-link" to="checkout">My cart ({cartData.length})</Link>
+                        <Link className="nav-link" to="checkout">My cart ({cartitems})</Link>
                     </li>
-
-
 
                 </ul>
             </div>

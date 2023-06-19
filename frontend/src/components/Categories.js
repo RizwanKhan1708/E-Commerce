@@ -24,7 +24,7 @@ function Categories(){
         fetchdata(baseurl)
     }
     var links=[];
-    var limit=1
+    var limit=12
     var totalLinks=totalResult/limit;
     for (let i=1; i<=totalLinks; i++){
         links.push(<li className="page-item"><Link onClick={()=> changeUrl(baseUrl+`/categories?page=${i}`)} to={`/categories?page=${i}`}

@@ -16,6 +16,7 @@ import Home from "./components/Home"
 import Categories from "./components/Categories";
 import Footer from "./components/Footer";
 import CategoryProducts from "./components/CategoryProducts";
+import ConfirmOrder from "./components/ConfirmOrder";
 // import TagProducts from "./components/TagProducts";
 import AllProducts from "./components/AllProducts";
 import Checkout from "./components/Checkout";
@@ -36,6 +37,7 @@ import AddressList from "./components/Customer/AddressList";
 import AddAddress from "./components/Customer/AddAddress";
 import SellerChangePassword from "./components/Seller/SellerChangePassword";
 import SellerProfileUpdate from "./components/Seller/SellerProfileUpdate";
+
 
 //Seller penal
 import SellerRegister from "./components/Seller/SellerRegister";
@@ -72,6 +74,7 @@ function App() {
           <Route path='/order/success' element={<OrderSuccess/>} />
           <Route path='/order/failure' element={<OrderFailure/>} />
           <Route path='/categories' element={<Categories/>} />
+          <Route path='/confirm-order' element={<ConfirmOrder/>} />
           <Route path='/category/:category_slug/:category_id' element={<CategoryProducts/>}/>
           <Route path='/products/:tag/' element={<TagProducts/>}/>
           <Route path='/product/:product_slug/:product_id' element={<ProductDetail/>}/>
