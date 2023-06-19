@@ -22,8 +22,22 @@ function ProductDetail(){
     useEffect(() =>{
         fetchData(baseUrl+'/product/'+product_id);
         fetchRelatedData(baseUrl+'/related_products/'+product_id);
+        checkProductInCart(product_id)
+        localStorage.removeItem(cartData)
     },[]);
 
+    function checkProductInCart(product_id){
+        var previuosCart=localStorage.getItem('cartData')
+        var cartJson=JSON.parse(previuosCart);
+        if(cartJson != null){
+            cartJson.map((cart) =>{
+                if (cart != null && cart.product.id == product_id){
+                    setCartButtonClickStatus(true)
+                }
+                }
+            )
+        }
+    }
 
     function fetchData(baseurl) {
         fetch(baseurl)
@@ -57,7 +71,9 @@ function ProductDetail(){
         var cartData={
                 'product': {
                     'id': ProductData.id,
-                    'title':ProductData.title
+                    'title':ProductData.title,
+                    'price':ProductData.price,
+                    'image':ProductData.image
                 },
                 user:{
                     'id':1
