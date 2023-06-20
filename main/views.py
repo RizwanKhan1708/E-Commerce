@@ -83,9 +83,11 @@ def customer_login(request):
         password = body.get('password')
         user = authenticate(username=username, password=password)
         if user:
+            customer=models.Customer.objects.get(user=user)
             msg = {
                 'bool': True,
-                'user': user.username
+                'user': user.username,
+                'id': customer.id
             }
         else:
             msg = {
@@ -146,6 +148,10 @@ class OrderList(generics.ListCreateAPIView):
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderSerializer
     # permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        return super().post(request,*args,**kwargs)
 
 class OrderDetail(generics.ListAPIView):
     queryset = models.OrderItems.objects.all()
