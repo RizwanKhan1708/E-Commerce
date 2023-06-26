@@ -50,8 +50,8 @@ class Order(models.Model):
     cutomer=models.ForeignKey(Customer,on_delete=models.CASCADE)
     order_time=models.DateTimeField(auto_now_add=True)
 
-    # def __str__(self):
-    #     return '%s' %(self.order_time)
+    def __str__(self):
+        return '%s' %(self.order_time)
 
 # Order item Model
 class OrderItems(models.Model):
